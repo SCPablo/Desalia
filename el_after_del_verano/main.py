@@ -16,7 +16,7 @@ import json
 
 
 def init_logging():
-    logging.basicConfig(filename='script_log.txt', level=logging.INFO, format='%(asctime)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+    logging.basicConfig(filename='el_after_del_verano/script_log.txt', level=logging.INFO, format='%(asctime)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
     logging.info('Script started')
 
 
@@ -39,7 +39,7 @@ def set_up_firefox():
 
 
 def get_credentials():
-    with open('config.json', 'r') as file:
+    with open('el_after_del_verano/config.json', 'r') as file:
         config = json.load(file)
         email = config['email']
         password = config['password']
@@ -107,7 +107,7 @@ def second_page(driver):
 
 def get_info(p1, p2, p3):
     try:
-        with open('info.json', 'r') as file:
+        with open('el_after_del_verano/info.json', 'r') as file:
             info = json.load(file)
             return info[p1], info[p2], info[p3]
     except:
@@ -160,6 +160,9 @@ def third_page(driver):
         question3_input.send_keys(answer3)  # Reemplaza esto con la respuesta deseada
 
         time.sleep(2)
+
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+
 
         # Encuentra el botón "OBTENER" y haz clic en él
         obtener_button = driver.find_element(By.XPATH, '//button[text()="OBTENER"]')
@@ -214,15 +217,15 @@ time.sleep(3)  # Adjust as needed, depending on the page load time
 
 
 first_page(driver)
-time.sleep(2)
-second_page(driver)
-time.sleep(2)
+time.sleep(10)
 
 for i in range(20):
+    second_page(driver)
+    time.sleep(2)
     third_page(driver)
     time.sleep(2)
     four_page(driver)
-    time.sleep(15)
+    time.sleep(20)
     logging.info("Application done")
     last_page(driver)
     time.sleep(5)

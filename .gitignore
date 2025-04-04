@@ -3,3 +3,13 @@
 
 el_after_del_verano/*.json
 el_after_del_verano/*.txt
+
+
+#Desalia 2025
+2025/config*
+
+
+# Logs
+.log
+*.log
+
